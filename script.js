@@ -16,6 +16,17 @@
     }));
   })();
 
+
+  (function(){
+    const stage = root.querySelectorAll('.portrait-stage')[0];
+    if (!stage) return;
+    const img = stage.querySelector('.portrait-img');
+    const go  = () => stage.classList.add('ready');
+    // wait for the photo itself — otherwise the animation finishes before it arrives
+    if (img.complete && img.naturalWidth) go();
+    else { img.addEventListener('load', go); img.addEventListener('error', go); }
+  })();
+
 })();
 /* pain */
 (function(){
