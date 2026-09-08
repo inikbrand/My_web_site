@@ -25,6 +25,7 @@
     // wait for the photo itself — otherwise the animation finishes before it arrives
     if (img.complete && img.naturalWidth) go();
     else { img.addEventListener('load', go); img.addEventListener('error', go); }
+    setTimeout(go, 3000);   // safety net
   })();
 
 })();
@@ -232,6 +233,17 @@
   const scaler = document.querySelector('#mobile .m-scaler');
   if (!frame || !scaler) return;
   const FRAME_H = 8708;
+
+  // the hero animation must wait for the photo, otherwise it plays before the file arrives
+  const stage = frame.querySelector('.m-stage');
+  if (stage) {
+    const pic = stage.querySelector('.m-portrait');
+    const go  = () => stage.classList.add('ready');
+    if (pic && pic.complete && pic.naturalWidth) go();
+    else if (pic) { pic.addEventListener('load', go); pic.addEventListener('error', go); }
+    else go();
+    setTimeout(go, 3000);   // safety net: never leave it invisible
+  }
 
   function fit(){
     const k = (scaler.clientWidth || window.innerWidth) / 320;
