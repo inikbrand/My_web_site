@@ -2,7 +2,7 @@
 
 A one-page portfolio site for a freelance marketer and graphic designer, built from an original Figma design.
 
-   **Live site:** https://inikbrand.github.io/My_web_site/
+**Live site:** _add your published link here after deploying_
 
 ---
 

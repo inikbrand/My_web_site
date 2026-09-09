@@ -298,24 +298,52 @@
 
   /* FAQ — heights measured once, up front, so opening never re-measures */
   const items = Array.from(frame.querySelectorAll('[data-mfaq]'));
+  const FAQ_TOP = parseInt(items[0].style.top, 10);
+  const GAP = 14;
+
+  // blocks that sit under the FAQ column and must follow it
+  const below = Array.from(frame.querySelectorAll('.m-ch2, .m-csub, .m-field, .m-cbtn, .m-cpriv'));
+  below.forEach(el => { if (!el.dataset.baseTop) el.dataset.baseTop = parseInt(el.style.top, 10); });
+  const FAQ_BOTTOM_BASE = FAQ_TOP + items.reduce((s, it) => s + parseInt(it.dataset.base, 10) + GAP, 0);
+
   function measure(){
+    let y = FAQ_TOP;
     items.forEach(it => {
       const a = it.querySelector('.m-fa');
       const q = it.querySelector('.m-fq');
+
+      // natural closed height: the question plus its padding, never less than the design height
+      const closed = Math.max(parseInt(it.dataset.base, 10), q.offsetHeight + 30);
+      it.dataset.closedH = closed;
+
       const aTop = 14 + q.offsetHeight + 10;
       a.style.top = aTop + 'px';
       it.dataset.openH = (aTop + a.offsetHeight + 16);
-      if (!it.classList.contains('open')) it.style.height = it.dataset.base + 'px';
-      else it.style.height = it.dataset.openH + 'px';
+
+      it.style.top = y + 'px';
+      it.style.height = (it.classList.contains('open') ? it.dataset.openH : closed) + 'px';
+      y += closed + GAP;
     });
+
+    // shift the contact block by however much the questions grew
+    const delta = y - FAQ_BOTTOM_BASE;
+    below.forEach(el => { el.style.top = (parseInt(el.dataset.baseTop, 10) + delta) + 'px'; });
   }
   measure();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
   window.addEventListener('load', measure);
   items.forEach(it => it.addEventListener('click', () => {
     const wasOpen = it.classList.contains('open');
-    items.forEach(o => { o.classList.remove('open'); o.style.height = o.dataset.base + 'px'; });
-    if (!wasOpen) { it.classList.add('open'); it.style.height = it.dataset.openH + 'px'; }
+    items.forEach(o => { o.classList.remove('open'); o.style.height = (o.dataset.closedH || o.dataset.base) + 'px'; });
+    if (wasOpen) return;
+
+    it.classList.add('open');
+    const a = it.querySelector('.m-fa');
+    const q = it.querySelector('.m-fq');
+    // measure now, with the plate already open, so the answer is never cut off
+    const aTop = 14 + q.offsetHeight + 10;
+    a.style.top = aTop + 'px';
+    it.style.height = (aTop + a.scrollHeight + 18) + 'px';
   }));
 })();
 
