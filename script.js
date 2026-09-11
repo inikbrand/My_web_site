@@ -363,6 +363,77 @@
 })();
 
 
+/* ---- project brief: separate Google Form ---- */
+(function(){
+  const ov = document.querySelector('#brief .brief-overlay');
+  if (!ov) return;
+
+  const ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSc-QlQMAXJpGvQYD0M-4F_HeE-NIJB2JTqLl2eGrRE6YyWEfA/formResponse';
+  const F = {
+    name:     'entry.320073902',
+    contact:  'entry.2112195389',
+    services: 'entry.924704674',
+    about:    'entry.1834882562',
+    timeline: 'entry.1910473213'
+  };
+
+  const form    = document.querySelector('#brief #brief-form');
+  const closeB  = document.querySelector('#brief #brief-close');
+  const success = document.querySelector('#brief #brief-success');
+  const errBox  = document.querySelector('#brief #brief-error');
+  const q = id => document.querySelector('#brief #' + id);
+
+  function open(e)  { if (e) e.preventDefault();
+                       ov.classList.add('open');
+                       document.body.style.overflow = 'hidden'; }
+  function close()  { ov.classList.remove('open'); document.body.style.overflow = ''; }
+
+  document.querySelectorAll('[data-open-brief]').forEach(el => el.addEventListener('click', open));
+  closeB.addEventListener('click', close);
+  ov.addEventListener('click', e => { if (e.target === ov) close(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && ov.classList.contains('open')) close();
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name    = q('b-name').value.trim();
+    const contact = q('b-contact').value.trim();
+    const about   = q('b-about').value.trim();
+    const tRadio  = document.querySelector('#brief #b-timeline input:checked');
+    const timeline= tRadio ? tRadio.value : '';
+    const services = Array.from(document.querySelectorAll('#brief #b-services input:checked'))
+                          .map(i => i.value);
+
+    // the form marks these as required, so a blank answer would be rejected silently
+    if (!name || !contact || !about || services.length === 0) {
+      errBox.textContent = 'Please fill in your name, contact, at least one service and a few words about the project.';
+      errBox.classList.add('show');
+      return;
+    }
+    errBox.classList.remove('show');
+
+    const btn = form.querySelector('.brief-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    const fd = new FormData();
+    fd.append(F.name, name);
+    fd.append(F.contact, contact);
+    services.forEach(v => fd.append(F.services, v));   // checkbox: one line per choice
+    fd.append(F.about, about);
+    if (timeline) fd.append(F.timeline, timeline);
+
+    fetch(ACTION, { method: 'POST', mode: 'no-cors', body: fd }).finally(() => {
+      btn.disabled = false;
+      btn.textContent = 'Send brief';
+      success.classList.add('show');
+      form.reset();
+    });
+  });
+})();
+
+
 /* contact popup wiring */
 (function(){
   const overlay = document.querySelector('#popup .overlay');
@@ -396,7 +467,7 @@
     btn.textContent = 'Sending...';
     window.sendEnquiry(data).finally(() => {
       btn.disabled = false;
-      btn.textContent = 'Discuss the project';
+      btn.textContent = 'Contact me';
       success.classList.add('show');
       form.reset();
     });
@@ -440,7 +511,7 @@
     btn.textContent = 'Sending...';
     window.sendEnquiry(data).finally(() => {
       btn.disabled = false;
-      btn.textContent = 'Discuss the project';
+      btn.textContent = 'Contact me';
       msg.textContent = "Thanks! I'll get back to you shortly.";
       msg.classList.remove('err');
       msg.classList.add('show');
@@ -461,7 +532,7 @@
     const data = { name: inputs[0].value.trim(), phone: inputs[1].value.trim(), email: inputs[2].value.trim() };
     if (!data.name || (!data.phone && !data.email)) {
       btn.textContent = 'Add name + contact';
-      setTimeout(() => btn.textContent = 'Discuss the project', 2200);
+      setTimeout(() => btn.textContent = 'Contact me', 2200);
       return;
     }
     btn.disabled = true;
@@ -470,7 +541,7 @@
       btn.disabled = false;
       btn.textContent = 'Thanks! I will reply soon';
       inputs.forEach(i => i.value = '');
-      setTimeout(() => btn.textContent = 'Discuss the project', 4000);
+      setTimeout(() => btn.textContent = 'Contact me', 4000);
     });
   });
 })();

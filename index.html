@@ -40,8 +40,8 @@
     <p class="eyebrow">Marketing &amp; Graphic Design Services</p>
     <h1>I package your expertise<br>into <span class="accent">a recognisable brand</span><br>that turns trust into clients</h1>
     <div class="cta-row">
-      <button class="btn btn-primary" data-open-popup>Complete brief</button>
-      <button class="btn btn-outline" data-open-popup>Discuss the project</button>
+      <button class="btn btn-primary" data-open-brief>Complete brief</button>
+      <button class="btn btn-outline" data-open-popup>Contact me</button>
     </div>
   </div>
 </section>
@@ -255,7 +255,7 @@
       </div>
       <div class="foot">
         <div class="terms"><span class="weeks">2–3 weeks</span><span class="price">£600</span></div>
-        <button class="brief-btn" data-open-popup>Complete brief</button>
+        <button class="brief-btn" data-open-brief>Complete brief</button>
       </div>
     </div>
 
@@ -267,7 +267,7 @@
       </div>
       <div class="foot">
         <div class="terms"><span class="weeks">1–2 weeks</span><span class="price">£500</span></div>
-        <button class="brief-btn" data-open-popup>Complete brief</button>
+        <button class="brief-btn" data-open-brief>Complete brief</button>
       </div>
     </div>
 
@@ -279,7 +279,7 @@
       </div>
       <div class="foot">
         <div class="terms"><span class="weeks">1–2 weeks</span><span class="price">£400</span></div>
-        <button class="brief-btn" data-open-popup>Complete brief</button>
+        <button class="brief-btn" data-open-brief>Complete brief</button>
       </div>
     </div>
 
@@ -291,7 +291,7 @@
       </div>
       <div class="foot">
         <div class="terms"><span class="weeks">2–3 weeks</span><span class="price">£800</span></div>
-        <button class="brief-btn" data-open-popup>Complete brief</button>
+        <button class="brief-btn" data-open-brief>Complete brief</button>
       </div>
     </div>
 
@@ -363,8 +363,8 @@
       </ul>
     </div>
 
-    <button class="cta cta-primary" data-open-popup>Complete brief</button>
-    <button class="cta cta-outline" data-open-popup>Discuss the project</button>
+    <button class="cta cta-primary" data-open-brief>Complete brief</button>
+    <button class="cta cta-outline" data-open-popup>Contact me</button>
 
   </div>
   </div>
@@ -457,7 +457,7 @@
         <input type="email" id="c-email" name="email" autocomplete="email"><label for="c-email">Email</label>
       </div>
 
-      <button class="submit-btn" id="c-submit">Discuss the project</button>
+      <button class="submit-btn" id="c-submit">Contact me</button>
       <p class="c-msg" id="c-msg"></p>
       <p class="privacy">By clicking the button,<br>you agree to the <a href="#" data-privacy class="pp-link">privacy policy</a></p>
     </div>
@@ -542,11 +542,67 @@
       <input class="field" id="p-contact" name="email" autocomplete="email" type="email" placeholder="you@example.com">
 
       <div class="bottom-row">
-        <button class="submit-btn" type="submit">Discuss the project</button>
+        <button class="submit-btn" type="submit">Contact me</button>
         <p class="privacy-note">By clicking the button, you agree to the <a href="#" data-privacy class="pp-link">privacy policy</a></p>
       </div>
 
       <div class="success" id="popup-success">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="10" fill="#57d186"/>
+          <path d="M6 10.5L8.5 13L14 7" stroke="#14190f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Thanks! I'll get back to you shortly.
+      </div>
+    </form>
+  </div>
+</div>
+
+
+</div>
+<div id="brief">
+
+
+<div class="brief-overlay" id="brief-overlay">
+  <div class="brief-modal" role="dialog" aria-modal="true">
+    <button class="brief-close" id="brief-close" aria-label="Close">+</button>
+
+    <h2>Tell me about your project</h2>
+    <p class="brief-intro">A few quick questions so I can come back to you with something useful rather than more questions.</p>
+
+    <form id="brief-form">
+      <label class="brief-label" for="b-name">Your Name</label>
+      <input class="brief-field" id="b-name" name="name" type="text" autocomplete="name" placeholder="Jane Smith">
+
+      <label class="brief-label" for="b-contact">How to reach you? (add your contact)</label>
+      <input class="brief-field" id="b-contact" name="contact" type="text" placeholder="Email, phone or @telegram">
+
+      <label class="brief-label">What do you need?</label>
+      <div class="brief-options" id="b-services">
+        <label><input type="checkbox" value="Brand Identity"><span class="tick"></span>Brand Identity</label>
+        <label><input type="checkbox" value="Print design"><span class="tick"></span>Print design</label>
+        <label><input type="checkbox" value="Social media content/design"><span class="tick"></span>Social media content/design</label>
+        <label><input type="checkbox" value="Landing Page"><span class="tick"></span>Landing Page</label>
+        <label><input type="checkbox" value="Not sure yet"><span class="tick"></span>Not sure yet</label>
+      </div>
+
+      <label class="brief-label" for="b-about">About the project</label>
+      <textarea class="brief-field" id="b-about" name="about" placeholder="What are you building, who is it for, and what should it achieve?"></textarea>
+
+      <label class="brief-label">Timeline</label>
+      <div class="brief-options" id="b-timeline">
+        <label><input type="radio" name="timeline" value="As soon as possible"><span class="tick"></span>As soon as possible</label>
+        <label><input type="radio" name="timeline" value="Within a month"><span class="tick"></span>Within a month</label>
+        <label><input type="radio" name="timeline" value="Just exploring"><span class="tick"></span>Just exploring</label>
+      </div>
+
+      <div class="brief-bottom">
+        <button class="brief-submit" type="submit">Send brief</button>
+        <p class="brief-note">By clicking the button, you agree to the <a href="#" data-privacy class="pp-link">privacy policy</a></p>
+      </div>
+
+      <p class="brief-error" id="brief-error"></p>
+
+      <div class="brief-success" id="brief-success">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <circle cx="10" cy="10" r="10" fill="#57d186"/>
           <path d="M6 10.5L8.5 13L14 7" stroke="#14190f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -595,7 +651,7 @@
 <p class="m-head" style="left:0px;top:118px;">I package your expertise<br>into <span class="ac">a recognisable brand</span><br>that turns trust into clients</p>
 <div class="m-stage" style="top:210px;"><div class="m-disc"></div><img class="m-portrait" src="images/portrait.png" alt="Iryna Nikolaieva"></div>
 <button class="m-btn m-btn-fill" data-open-popup style="left:60px;top:476px;">Complete brief</button>
-<button class="m-btn m-btn-outline" data-open-popup style="left:60px;top:534px;">Discuss the project</button>
+<button class="m-btn m-btn-outline" data-open-popup style="left:60px;top:534px;">Contact me</button>
 <div class="m-pair" data-mrow style="top:678px;"><div class="m-circ m-circ-p" style="left:10px;"><p>Afraid you'll get lost among competitors?</p></div><div class="m-circ m-circ-s" style="left:145px;"><p>In-depth competitor analysis to find your edge</p></div></div>
 <div class="m-pair" data-mrow style="top:864px;"><div class="m-circ m-circ-p" style="left:10px;"><p>No time to figure out how online sales work?</p></div><div class="m-circ m-circ-s" style="left:145px;"><p>A clear Customer Journey Map built for conversions</p></div></div>
 <div class="m-pair" data-mrow style="top:1050px;"><div class="m-circ m-circ-p" style="left:10px;"><p>Tired of wasting money on random freelancers?</p></div><div class="m-circ m-circ-s" style="left:145px;"><p>One dedicated expert managing your entire project</p></div></div>
@@ -634,28 +690,28 @@
 <ul class="m-pul m-ptx-outline" style="left:168px;top:4432px;"><li>logo</li><li>colour palette</li><li>typeface</li><li>brand guidelines</li></ul>
 <p class="m-pmeta m-ptx-outline" style="left:42px;top:4532px;">2–3 weeks</p>
 <p class="m-pprice m-ptx-outline" style="left:175px;top:4524px;">£600</p>
-<button class="m-pbtn m-pbtn-fill" data-open-popup style="left:60px;top:4575px;">Complete brief</button>
+<button class="m-pbtn m-pbtn-fill" data-open-brief style="left:60px;top:4575px;">Complete brief</button>
 <div class="m-prow m-prow-fill" style="left:20px;top:4674px;width:280px;height:284px;"></div>
 <p class="m-pname m-ptx-fill" style="left:42px;top:4699px;">Print</p>
 <ul class="m-pul m-ptx-fill" style="left:36px;top:4746px;"><li>audience research</li><li>competitor analysis</li><li>sales concept</li></ul>
 <ul class="m-pul m-ptx-fill" style="left:168px;top:4746px;"><li>packaging</li><li>printed materials</li><li>presentations</li><li>mockups</li></ul>
 <p class="m-pmeta m-ptx-fill" style="left:42px;top:4846px;">1–2 weeks</p>
 <p class="m-pprice m-ptx-fill" style="left:175px;top:4838px;">£500</p>
-<button class="m-pbtn m-pbtn-dark" data-open-popup style="left:60px;top:4889px;">Complete brief</button>
+<button class="m-pbtn m-pbtn-dark" data-open-brief style="left:60px;top:4889px;">Complete brief</button>
 <div class="m-prow m-prow-outline" style="left:20px;top:4988px;width:280px;height:284px;"></div>
 <p class="m-pname m-ptx-outline" style="left:42px;top:5013px;">Social media</p>
 <ul class="m-pul m-ptx-outline" style="left:36px;top:5060px;"><li>audience research</li><li>competitor analysis</li><li>sales concept</li></ul>
 <ul class="m-pul m-ptx-outline" style="left:168px;top:5060px;"><li>post design</li><li>stories</li><li>page layouts</li></ul>
 <p class="m-pmeta m-ptx-outline" style="left:42px;top:5160px;">1–2 weeks</p>
 <p class="m-pprice m-ptx-outline" style="left:175px;top:5152px;">£400</p>
-<button class="m-pbtn m-pbtn-fill" data-open-popup style="left:60px;top:5203px;">Complete brief</button>
+<button class="m-pbtn m-pbtn-fill" data-open-brief style="left:60px;top:5203px;">Complete brief</button>
 <div class="m-prow m-prow-fill" style="left:20px;top:5302px;width:280px;height:284px;"></div>
 <p class="m-pname m-ptx-fill" style="left:42px;top:5327px;">Landing page</p>
 <ul class="m-pul m-ptx-fill" style="left:36px;top:5374px;"><li>audience research</li><li>competitor analysis</li><li>sales concept</li></ul>
 <ul class="m-pul m-ptx-fill" style="left:168px;top:5374px;"><li>prototype</li><li>design</li><li>code</li><li>integration</li></ul>
 <p class="m-pmeta m-ptx-fill" style="left:42px;top:5474px;">2–3 weeks</p>
 <p class="m-pprice m-ptx-fill" style="left:175px;top:5466px;">£800</p>
-<button class="m-pbtn m-pbtn-dark" data-open-popup style="left:60px;top:5517px;">Complete brief</button>
+<button class="m-pbtn m-pbtn-dark" data-open-brief style="left:60px;top:5517px;">Complete brief</button>
 <div class="m-hline" style="left:10px;top:4656px;width:300px;height:0px;"></div>
 <div class="m-hline" style="left:10px;top:4973px;width:300px;height:0px;"></div>
 <div class="m-hline" style="left:10px;top:5287px;width:300px;height:0px;"></div>
@@ -676,8 +732,8 @@
 <div class="m-step" style="left:20px;top:6786px;width:280px;height:235px;"></div>
 <p class="m-snum" style="left:42px;top:6811px;">5</p>
 <ul class="m-sul" style="left:36px;top:6856px;"><li>Final Quality Check (QA)</li><li>Remaining 70% Payment</li><li>Domain &amp; SSL Configuration</li><li>Official Website Launch</li><li>Account &amp; Assets Transfer</li></ul>
-<button class="m-btn m-btn-fill" data-open-popup style="left:60px;top:7055px;">Complete brief</button>
-<button class="m-btn m-btn-outline" data-open-popup style="left:60px;top:7115px;">Discuss the project</button>
+<button class="m-btn m-btn-fill" data-open-brief style="left:60px;top:7055px;">Complete brief</button>
+<button class="m-btn m-btn-outline" data-open-popup style="left:60px;top:7115px;">Contact me</button>
 <div class="m-faq m-faq-green" data-mfaq data-base="70" style="top:7259px;height:70px;"><span class="m-fq">Do we sign a contract before starting?</span><svg class="m-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><div class="m-fa"><p>Yes, absolutely. As an independent freelance specialist, I ensure all projects are fully protected. Before any work begins, we will sign a formal digital contract that outlines the exact scope of work, timelines, and deliverables. It's a quick, paperless process completed entirely online.</p></div></div>
 <div class="m-faq m-faq-outline" data-mfaq data-base="60" style="top:7343px;height:60px;"><span class="m-fq">Can I order only a landing page?</span><svg class="m-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><div class="m-fa"><p>Yes, you can. While I offer comprehensive brand ecosystem design, you can hire me strictly for standalone landing page development. Every landing page I create is still rooted in basic market research to ensure it doesn't just look stunning, but actively converts your visitors into customers.</p></div></div>
 <div class="m-faq m-faq-green" data-mfaq data-base="70" style="top:7417px;height:70px;"><span class="m-fq">I already have a marketing strategy,<br>can I order only design?</span><svg class="m-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><div class="m-fa"><p>Of course. If you already have a structured marketing strategy, brand guidelines, or wireframes in place, I can easily fast-track the project. We will review your materials during the onboarding call, and I will jump straight into the visual concept and Figma UI design, aligning perfectly with your existing goals.</p></div></div>
@@ -691,7 +747,7 @@
 <div class="m-field" style="top:8121px;"><input type="text"><label>Name</label></div>
 <div class="m-field" style="top:8181px;"><input type="text"><label>Phone</label></div>
 <div class="m-field" style="top:8241px;"><input type="text"><label>Email</label></div>
-<button class="m-cbtn" data-open-popup style="left:20px;top:8331px;">Discuss the project</button>
+<button class="m-cbtn" style="left:20px;top:8331px;">Contact me</button>
 <p class="m-cpriv" style="left:20px;top:8390px;">By clicking the button,<br>you agree to the <a href="#" data-privacy class="pp-link">privacy policy</a></p>
 <div id="m-footer" class="m-anchor" style="top:8468px;"></div>
 <a class="m-soc" href="https://www.instagram.com/inikbrand" target="_blank" rel="noopener" style="left:20px;top:8564px;"><span class="m-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span><span class="m-soc-t">Instagram</span></a>
